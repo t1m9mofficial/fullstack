@@ -41,7 +41,6 @@ func (server *Server) Login(w http.ResponseWriter, r *http.Request) {
 }
 
 func (server *Server) SignIn(email, password string) (string, error) {
-
 	var err error
 
 	user := models.User{}
@@ -54,5 +53,6 @@ func (server *Server) SignIn(email, password string) (string, error) {
 	if err != nil && err == bcrypt.ErrMismatchedHashAndPassword {
 		return "", err
 	}
+	
 	return auth.CreateToken(user.ID)
 }
